@@ -1,207 +1,318 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liberty Port Address</title>
-  <style>
-    /* --- Reset a základní styl --- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberty Port Address</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* --- Reset a základní styl --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      background-color: #0b0d15;
-      color: #f0f4ff;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background-color: #0b0d15;
+            color: #f0f4ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    /* --- Kontejner pro parallax efekt --- */
-    .parallax-container {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+        /* --- HLAVIČKA S KONTAKTY --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(11, 13, 21, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
 
-    /* --- Jediná vrstva tečkového rastru --- */
-    .dot-grid {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 120%;
-      background-image: radial-gradient(circle, rgba(100, 180, 255, 0.5) 1.5px, transparent 1.5px);
-      background-size: 40px 40px;
-      background-position: 0 0;
-      will-change: transform;
-      z-index: 0;
-      pointer-events: none;
-    }
+        /* --- Logo / Název v hlavičce --- */
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, #b8d6ff, #7aa9ff, #4a7fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    /* --- Obsah (nad tečkami) --- */
-    .content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      max-width: 900px;
-      margin: 0 1rem;
-      background: rgba(11, 13, 21, 0.55);
-      backdrop-filter: blur(6px);
-      border-radius: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8);
-      transition: transform 0.2s ease;
-    }
+        /* --- Kontaktní informace v hlavičce --- */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.2rem 1.8rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
 
-    .content h1 {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      font-size: clamp(2.8rem, 12vw, 5.8rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #b8d6ff, #7aa9ff, #4a7fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 0 40px rgba(74, 127, 255, 0.2);
-      margin-bottom: 0.5rem;
-      line-height: 1.1;
-    }
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
 
-    .content .sub {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.6);
-      letter-spacing: 0.3em;
-      font-weight: 300;
-      text-transform: uppercase;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 1.2rem;
-      margin-top: 0.5rem;
-      display: inline-block;
-    }
+        .contact-info a:hover {
+            color: #7aa9ff;
+        }
 
-    .content p {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 1.8rem;
-      line-height: 1.7;
-      font-weight: 300;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .contact-info .icon {
+            font-size: 1.2rem;
+        }
 
-    /* --- patička --- */
-    .footer {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.2);
-      letter-spacing: 0.1em;
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(4px);
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-    }
+        /* --- Oddělovač mezi kontakty --- */
+        .contact-info .separator {
+            color: rgba(255, 255, 255, 0.15);
+        }
 
-    /* --- Responzivní doladění --- */
-    @media (max-width: 640px) {
-      .content {
-        background: rgba(11, 13, 21, 0.7);
-        backdrop-filter: blur(10px);
-        border-radius: 1.8rem;
-        padding: 2rem 1.2rem;
-      }
-      .dot-grid {
-        background-size: 28px 28px;
-      }
-    }
-  </style>
+        /* --- TELEGRAM A WHATSAPP (zvýraznění) --- */
+        .contact-info .telegram:hover {
+            color: #26A5E4;
+        }
+
+        .contact-info .whatsapp:hover {
+            color: #25D366;
+        }
+
+        /* --- Kontejner pro parallax efekt --- */
+        .parallax-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px; /* aby obsah nezalézal pod hlavičku */
+        }
+
+        /* --- Jediná vrstva tečkového rastru --- */
+        .dot-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-image: radial-gradient(circle, rgba(100, 180, 255, 0.5) 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
+            background-position: 0 0;
+            will-change: transform;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- Obsah (nad tečkami) --- */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 900px;
+            margin: 0 1rem;
+            background: rgba(11, 13, 21, 0.55);
+            backdrop-filter: blur(6px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8);
+        }
+
+        .content h1 {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: clamp(2.8rem, 12vw, 5.8rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #b8d6ff, #7aa9ff, #4a7fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(74, 127, 255, 0.2);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .content .sub {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.3em;
+            font-weight: 300;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.2rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .content p {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 1.8rem;
+            line-height: 1.7;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Mobilní verze --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                padding: 0.6rem 1rem;
+            }
+
+            .contact-info {
+                font-size: 0.75rem;
+                gap: 0.4rem 1rem;
+                justify-content: center;
+            }
+
+            .logo a {
+                font-size: 1.2rem;
+            }
+
+            .parallax-container {
+                padding-top: 120px;
+            }
+
+            .content {
+                background: rgba(11, 13, 21, 0.7);
+                backdrop-filter: blur(10px);
+                border-radius: 1.8rem;
+                padding: 2rem 1.2rem;
+            }
+
+            .dot-grid {
+                background-size: 28px 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-info {
+                font-size: 0.65rem;
+                gap: 0.3rem 0.8rem;
+            }
+
+            .contact-info .separator {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HLAVNÍ SEKCE S PARALLAXEM -->
-  <section class="parallax-container">
+    <!-- HLAVIČKA S LOGEM A KONTAKTY -->
+    <header>
+        <div class="logo">
+            <a href="index.html">Liberty Port Address</a>
+        </div>
+        <div class="contact-info">
+            <a href="tel:+420607032537">
+                <span class="icon">📞</span> +420 607 032 537
+            </a>
+            <span class="separator">|</span>
+            <a href="mailto:liberty.port.address@proton.me">
+                <span class="icon">✉️</span> liberty.port.address@proton.me
+            </a>
+            <span class="separator">|</span>
+            <a href="https://t.me/+420607032537" target="_blank" class="telegram">
+                <span class="icon">✈️</span> Telegram
+            </a>
+            <span class="separator">|</span>
+            <a href="https://wa.me/420607032537" target="_blank" class="whatsapp">
+                <span class="icon">💬</span> WhatsApp
+            </a>
+        </div>
+    </header>
 
-    <!-- Jediná vrstva tečkového rastru -->
-    <div class="dot-grid" id="dotGrid"></div>
+    <!-- HLAVNÍ SEKCE S PARALLAXEM -->
+    <section class="parallax-container">
 
-    <!-- Obsah -->
-    <div class="content">
-      <h1>Liberty Port<br>Address</h1>
-      <span class="sub">✦ digitální přístav ✦</span>
-      <p>
-        Vítejte na místě, kde se setkává svoboda, technologie a adresa.<br>
-        Každá tečka je signálem.
-      </p>
-    </div>
-  </section>
+        <!-- Tečkový raster -->
+        <div class="dot-grid" id="dotGrid"></div>
 
-  <!-- Patička -->
-  <div class="footer">
-    © 2026 Liberty Port Address – plachtění v síti
-  </div>
+        <!-- Obsah -->
+        <div class="content">
+            <h1>Liberty Port<br>Address</h1>
+            <span class="sub">✦ digitální přístav ✦</span>
+            <p>
+                Vítejte na místě, kde se setkává svoboda, technologie a adresa.<br>
+                Každá tečka je signálem.
+            </p>
+        </div>
+    </section>
 
-  <script>
-    (function() {
-      const grid = document.getElementById('dotGrid');
+    <script>
+        (function() {
+            const grid = document.getElementById('dotGrid');
 
-      let mouseX = 0;
-      let mouseY = 0;
-      let currentX = 0;
-      let currentY = 0;
+            let mouseX = 0;
+            let mouseY = 0;
+            let currentX = 0;
+            let currentY = 0;
 
-      const SPEED = 0.035;
+            const SPEED = 0.035;
 
-      mouseX = window.innerWidth / 2;
-      mouseY = window.innerHeight / 2;
+            mouseX = window.innerWidth / 2;
+            mouseY = window.innerHeight / 2;
 
-      function updateGrid() {
-        currentX += (mouseX - currentX) * 0.08;
-        currentY += (mouseY - currentY) * 0.08;
+            function updateGrid() {
+                currentX += (mouseX - currentX) * 0.08;
+                currentY += (mouseY - currentY) * 0.08;
 
-        const offsetX = (currentX / window.innerWidth - 0.5) * 2;
-        const offsetY = (currentY / window.innerHeight - 0.5) * 2;
+                const offsetX = (currentX / window.innerWidth - 0.5) * 2;
+                const offsetY = (currentY / window.innerHeight - 0.5) * 2;
 
-        grid.style.transform = `translate(${offsetX * 20 * SPEED * 100}px, ${offsetY * 20 * SPEED * 100}px)`;
+                grid.style.transform =
+                    `translate(${offsetX * 20 * SPEED * 100}px, ${offsetY * 20 * SPEED * 100}px)`;
 
-        requestAnimationFrame(updateGrid);
-      }
+                requestAnimationFrame(updateGrid);
+            }
 
-      function onMouseMove(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      }
+            function onMouseMove(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }
 
-      function onTouchMove(e) {
-        if (e.touches.length > 0) {
-          mouseX = e.touches[0].clientX;
-          mouseY = e.touches[0].clientY;
-        }
-      }
+            function onTouchMove(e) {
+                if (e.touches.length > 0) {
+                    mouseX = e.touches[0].clientX;
+                    mouseY = e.touches[0].clientY;
+                }
+            }
 
-      window.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('touchmove', onTouchMove);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('touchmove', onTouchMove);
 
-      mouseX = window.innerWidth / 2;
-      mouseY = window.innerHeight / 2;
+            mouseX = window.innerWidth / 2;
+            mouseY = window.innerHeight / 2;
 
-      updateGrid();
-    })();
-  </script>
+            updateGrid();
+        })();
+    </script>
 
 </body>
 </html>
