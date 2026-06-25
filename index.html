@@ -140,6 +140,7 @@
 
         .contact-info .icon {
             font-size: 1.2rem;
+            line-height: 1;
         }
 
         .contact-info .separator {
@@ -156,6 +157,20 @@
 
         .contact-info .signal:hover {
             color: #3A76F0;
+        }
+
+        /* --- SVG ikony v hlavičce --- */
+        .contact-info .icon-svg {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+
+        .contact-info a:hover .icon-svg {
+            fill: currentColor;
         }
 
         /* --- TLAČÍTKO PŘEPÍNÁNÍ MOTIVU --- */
@@ -238,7 +253,7 @@
             font-size: clamp(2.8rem, 12vw, 5.8rem);
             font-weight: 700;
             letter-spacing: 0.02em;
-            text-transform: uppercase;
+            text-transform: none;
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -246,6 +261,10 @@
             text-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
             margin-bottom: 0.5rem;
             line-height: 1.1;
+        }
+
+        .content h1::first-letter {
+            text-transform: uppercase;
         }
 
         .content p {
@@ -290,11 +309,11 @@
             background: var(--table-header-bg);
             padding: 1rem 1.2rem;
             text-align: left;
-            color: var(--accent-color);
+            color: var(--text-primary);
             font-weight: 600;
             letter-spacing: 0.05em;
             border-bottom: 2px solid var(--table-border);
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .pricing-table tbody td {
@@ -336,6 +355,42 @@
             border-radius: 1rem;
             letter-spacing: 0.05em;
             margin-left: 0.5rem;
+        }
+
+        /* --- DOPLŇKOVÉ SLUŽBY --- */
+        .services-table {
+            margin-top: 2.5rem;
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 0.95rem;
+            min-width: 400px;
+        }
+
+        .services-table thead th {
+            background: var(--table-header-bg);
+            padding: 1rem 1.2rem;
+            text-align: left;
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--table-border);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .services-table tbody td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .services-table tbody tr:hover {
+            background: rgba(255, 215, 0, 0.04);
+        }
+
+        .services-table tbody tr:last-child td {
+            border-bottom: none;
         }
 
         /* --- Mobilní verze --- */
@@ -381,6 +436,16 @@
                 padding: 0.7rem 0.8rem;
             }
 
+            .services-table {
+                font-size: 0.8rem;
+                min-width: 300px;
+            }
+
+            .services-table thead th,
+            .services-table tbody td {
+                padding: 0.7rem 0.8rem;
+            }
+
             .table-section h2 {
                 font-size: 1.4rem;
             }
@@ -410,6 +475,16 @@
                 padding: 0.5rem 0.6rem;
             }
 
+            .services-table {
+                font-size: 0.7rem;
+                min-width: 250px;
+            }
+
+            .services-table thead th,
+            .services-table tbody td {
+                padding: 0.5rem 0.6rem;
+            }
+
             .pricing-table .best-deal {
                 font-size: 0.5rem;
                 padding: 0.1rem 0.4rem;
@@ -419,7 +494,7 @@
 </head>
 <body>
 
-    <!-- HLAVIČKA S LOGEM, KONTAKTY A PŘEPÍNAČEM MOTIVU -->
+    <!-- HLAVIČKA S LOGEM A KONTAKTY -->
     <header>
         <div class="logo">
             <a href="index.html">Liberty Port Address</a>
@@ -434,15 +509,27 @@
             </a>
             <span class="separator">|</span>
             <a href="https://t.me/+420607032537" target="_blank" class="telegram">
-                <span class="icon">✈️</span> Telegram
+                <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                Telegram
             </a>
             <span class="separator">|</span>
             <a href="https://wa.me/420607032537" target="_blank" class="whatsapp">
-                <span class="icon">💬</span> WhatsApp
+                <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                WhatsApp
             </a>
             <span class="separator">|</span>
             <a href="https://signal.me/#p/+420607032537" target="_blank" class="signal">
-                <span class="icon">🔵</span> Signal
+                <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.043 22.793C5.797 22.793.667 17.663.667 11.417S5.797.042 12.043.042s11.376 5.13 11.376 11.375-5.13 11.376-11.376 11.376zm0-21.292C6.584 1.501 2.126 5.959 2.126 11.417s4.458 9.916 9.917 9.916 9.916-4.458 9.916-9.916S17.502 1.501 12.043 1.501z"/>
+                    <path d="M17.312 16.305a.719.719 0 01-.51-.212c-1.295-1.241-2.934-1.868-4.76-1.868-1.825 0-3.465.627-4.76 1.868a.722.722 0 01-1.019-1.021c1.574-1.508 3.558-2.269 5.779-2.269 2.22 0 4.205.761 5.779 2.269a.722.722 0 01-.509 1.233z"/>
+                    <circle cx="9.119" cy="10.342" r="1.845"/>
+                    <circle cx="14.967" cy="10.342" r="1.845"/>
+                </svg>
+                Signal
             </a>
             <span class="separator">|</span>
             <button class="theme-toggle" id="themeToggle" aria-label="Přepnout motiv">
@@ -460,7 +547,7 @@
 
         <!-- Obsah -->
         <div class="content">
-            <h1>Liberty Port<br>Address</h1>
+            <h1>Liberty port address</h1>
             <p>
                 Virtuální sídlo Praha 5, Jindřicha Plachty 1139/25.
             </p>
@@ -493,7 +580,6 @@
                             <td>4 320 Kč</td>
                             <td class="savings">480 Kč</td>
                         </tr>
-                        <!-- Nejvýhodnější nabídka se žlutým gradientem -->
                         <tr class="highlight-row">
                             <td>
                                 Platba za 3 roky
@@ -508,6 +594,32 @@
                             <td>145 Kč</td>
                             <td>6 960 Kč</td>
                             <td class="savings">2 640 Kč</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- DOPLŇKOVÉ SLUŽBY                           -->
+            <!-- ========================================== -->
+            <div class="table-section">
+                <h2>📦 Doplňkové služby</h2>
+
+                <table class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Služba</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Skenování poštovních zásilek</td>
+                            <td>99,- Kč / měsíčně</td>
+                        </tr>
+                        <tr>
+                            <td>Přeposílání poštovních zásilek</td>
+                            <td>299,- Kč / měsíčně</td>
                         </tr>
                     </tbody>
                 </table>
