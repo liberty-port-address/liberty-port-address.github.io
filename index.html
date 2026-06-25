@@ -103,7 +103,8 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding-top: 80px; /* aby obsah nezalézal pod hlavičku */
+            padding-top: 80px;
+            padding-bottom: 2rem;
         }
 
         /* --- Jediná vrstva tečkového rastru --- */
@@ -127,7 +128,8 @@
             z-index: 1;
             text-align: center;
             padding: 2rem 1.5rem;
-            max-width: 900px;
+            max-width: 1000px;
+            width: 95%;
             margin: 0 1rem;
             background: rgba(11, 13, 21, 0.55);
             backdrop-filter: blur(6px);
@@ -176,6 +178,80 @@
             margin-right: auto;
         }
 
+        /* --- TABULKA CENÍK VIRTUÁLNÍHO SÍDLA --- */
+        .table-section {
+            margin-top: 2.5rem;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 0.95rem;
+            min-width: 500px;
+        }
+
+        .pricing-table thead th {
+            background: rgba(74, 127, 255, 0.15);
+            padding: 1rem 1.2rem;
+            text-align: left;
+            color: #b8d6ff;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid rgba(74, 127, 255, 0.2);
+        }
+
+        .pricing-table tbody td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-table .highlight-row {
+            background: rgba(74, 127, 255, 0.08);
+        }
+
+        .pricing-table .highlight-row td {
+            color: #fff;
+        }
+
+        .pricing-table .savings {
+            color: #2ed573;
+            font-weight: 600;
+        }
+
+        .pricing-table .best-deal {
+            display: inline-block;
+            background: linear-gradient(135deg, #2ed573, #1abc9c);
+            color: #0b0d15;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            letter-spacing: 0.05em;
+            margin-left: 0.5rem;
+        }
+
         /* --- Mobilní verze --- */
         @media (max-width: 768px) {
             header {
@@ -202,11 +278,25 @@
                 background: rgba(11, 13, 21, 0.7);
                 backdrop-filter: blur(10px);
                 border-radius: 1.8rem;
-                padding: 2rem 1.2rem;
+                padding: 2rem 1rem;
             }
 
             .dot-grid {
                 background-size: 28px 28px;
+            }
+
+            .pricing-table {
+                font-size: 0.8rem;
+                min-width: 350px;
+            }
+
+            .pricing-table thead th,
+            .pricing-table tbody td {
+                padding: 0.7rem 0.8rem;
+            }
+
+            .table-section h2 {
+                font-size: 1.4rem;
             }
         }
 
@@ -218,6 +308,21 @@
 
             .contact-info .separator {
                 display: none;
+            }
+
+            .pricing-table {
+                font-size: 0.7rem;
+                min-width: 300px;
+            }
+
+            .pricing-table thead th,
+            .pricing-table tbody td {
+                padding: 0.5rem 0.6rem;
+            }
+
+            .pricing-table .best-deal {
+                font-size: 0.5rem;
+                padding: 0.1rem 0.4rem;
             }
         }
     </style>
@@ -259,8 +364,61 @@
             <h1>Liberty Port<br>Address</h1>
             <span class="sub">✦ digitální přístav ✦</span>
             <p>
-                Virtuální sídlo Praha 5,Jindřicha Plachty 1139/25.<br>
+                Virtuální sídlo Praha 5, Jindřicha Plachty 1139/25.
             </p>
+
+            <!-- ========================================== -->
+            <!-- CENÍK VIRTUÁLNÍHO SÍDLA                    -->
+            <!-- ========================================== -->
+            <div class="table-section">
+                <h2>📊 Ceník virtuálního sídla</h2>
+
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Platba</th>
+                            <th>Měsíčně</th>
+                            <th>Celková částka</th>
+                            <th>Úspora oproti 200 Kč/měsíc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Měsíčně</td>
+                            <td>200 Kč</td>
+                            <td>200 Kč/měsíc</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Platba za 1 rok</td>
+                            <td>200 Kč</td>
+                            <td>2 400 Kč</td>
+                            <td>0 Kč</td>
+                        </tr>
+                        <tr>
+                            <td>Platba za 2 roky</td>
+                            <td>180 Kč</td>
+                            <td>4 320 Kč</td>
+                            <td class="savings">480 Kč</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>
+                                Platba za 3 roky
+                                <span class="best-deal">★ Nejvýhodnější</span>
+                            </td>
+                            <td>160 Kč</td>
+                            <td>5 760 Kč</td>
+                            <td class="savings">1 440 Kč</td>
+                        </tr>
+                        <tr>
+                            <td>Platba za 4 roky</td>
+                            <td>145 Kč</td>
+                            <td>6 960 Kč</td>
+                            <td class="savings">2 640 Kč</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
