@@ -13,12 +13,60 @@
             box-sizing: border-box;
         }
 
+        /* --- PROMĚNNÉ PRO MOTIVY --- */
+        :root {
+            /* Dark theme (výchozí) */
+            --bg-primary: #0b0d15;
+            --bg-secondary: rgba(11, 13, 21, 0.55);
+            --bg-secondary-hover: rgba(11, 13, 21, 0.7);
+            --bg-header: rgba(11, 13, 21, 0.85);
+            --text-primary: #f0f4ff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-light: rgba(255, 255, 255, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.8);
+            --table-header-bg: rgba(74, 127, 255, 0.15);
+            --table-border: rgba(74, 127, 255, 0.2);
+            --dot-color: rgba(100, 180, 255, 0.5);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --input-focus: rgba(122, 169, 255, 0.2);
+            --highlight-row: rgba(74, 127, 255, 0.08);
+            --basic-row: rgba(255, 255, 255, 0.03);
+            --footer-bg: rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- LIGHT THEME --- */
+        [data-theme="light"] {
+            --bg-primary: #f0f4ff;
+            --bg-secondary: rgba(255, 255, 255, 0.75);
+            --bg-secondary-hover: rgba(255, 255, 255, 0.9);
+            --bg-header: rgba(255, 255, 255, 0.92);
+            --text-primary: #0b0d15;
+            --text-secondary: rgba(0, 0, 0, 0.7);
+            --text-muted: rgba(0, 0, 0, 0.6);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-light: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --table-header-bg: rgba(74, 127, 255, 0.1);
+            --table-border: rgba(74, 127, 255, 0.2);
+            --dot-color: rgba(74, 127, 255, 0.2);
+            --input-bg: rgba(0, 0, 0, 0.03);
+            --input-border: rgba(0, 0, 0, 0.1);
+            --input-focus: rgba(74, 127, 255, 0.15);
+            --highlight-row: rgba(74, 127, 255, 0.05);
+            --basic-row: rgba(0, 0, 0, 0.02);
+            --footer-bg: rgba(0, 0, 0, 0.05);
+        }
+
         body {
             font-family: 'Helvetica', 'Arial', sans-serif;
-            background-color: #0b0d15;
-            color: #f0f4ff;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* --- HLAVIČKA S KONTAKTY --- */
@@ -28,28 +76,30 @@
             left: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(11, 13, 21, 0.85);
+            background: var(--bg-header);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid var(--border-color);
             padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 0.5rem 1.5rem;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         /* --- Logo / Název v hlavičce --- */
         .logo a {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-primary);
             text-decoration: none;
             letter-spacing: 0.05em;
             background: linear-gradient(135deg, #b8d6ff, #7aa9ff, #4a7fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: color 0.3s ease;
         }
 
         /* --- Kontaktní informace v hlavičce --- */
@@ -59,11 +109,11 @@
             align-items: center;
             gap: 1.2rem 1.8rem;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
         }
 
         .contact-info a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -82,16 +132,49 @@
 
         /* --- Oddělovač mezi kontakty --- */
         .contact-info .separator {
-            color: rgba(255, 255, 255, 0.15);
+            color: var(--border-color);
         }
 
-        /* --- TELEGRAM A WHATSAPP (zvýraznění) --- */
+        /* --- TELEGRAM, WHATSAPP A SIGNAL (zvýraznění) --- */
         .contact-info .telegram:hover {
             color: #26A5E4;
         }
 
         .contact-info .whatsapp:hover {
             color: #25D366;
+        }
+
+        .contact-info .signal:hover {
+            color: #3A76F0;
+        }
+
+        /* --- TLAČÍTKO PŘEPÍNÁNÍ MOTIVU --- */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--bg-secondary);
+        }
+
+        .theme-toggle:hover {
+            border-color: #7aa9ff;
+            color: #7aa9ff;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle .theme-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         /* --- Kontejner pro parallax efekt --- */
@@ -114,12 +197,13 @@
             left: 0;
             width: 100%;
             height: 120%;
-            background-image: radial-gradient(circle, rgba(100, 180, 255, 0.5) 1.5px, transparent 1.5px);
+            background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
             background-size: 40px 40px;
             background-position: 0 0;
             will-change: transform;
             z-index: 0;
             pointer-events: none;
+            transition: background-image 0.5s ease;
         }
 
         /* --- Obsah (nad tečkami) --- */
@@ -131,11 +215,12 @@
             max-width: 1000px;
             width: 95%;
             margin: 0 1rem;
-            background: rgba(11, 13, 21, 0.55);
+            background: var(--bg-secondary);
             backdrop-filter: blur(6px);
             border-radius: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 25px 50px -10px var(--shadow-color);
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .content h1 {
@@ -156,26 +241,28 @@
         .content .sub {
             font-family: 'Helvetica', 'Arial', sans-serif;
             font-size: clamp(1rem, 2.5vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-muted);
             letter-spacing: 0.3em;
             font-weight: 300;
             text-transform: uppercase;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid var(--border-color);
             padding-top: 1.2rem;
             margin-top: 0.5rem;
             display: inline-block;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .content p {
             font-family: 'Helvetica', 'Arial', sans-serif;
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             margin-top: 1.8rem;
             line-height: 1.7;
             font-weight: 300;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            transition: color 0.3s ease;
         }
 
         /* --- TABULKA CENÍK VIRTUÁLNÍHO SÍDLA --- */
@@ -187,11 +274,12 @@
 
         .table-section h2 {
             font-size: 1.8rem;
-            color: #fff;
+            color: var(--text-primary);
             margin-bottom: 1.2rem;
             text-align: center;
             font-weight: 300;
             letter-spacing: 0.05em;
+            transition: color 0.3s ease;
         }
 
         .pricing-table {
@@ -203,23 +291,25 @@
         }
 
         .pricing-table thead th {
-            background: rgba(74, 127, 255, 0.15);
+            background: var(--table-header-bg);
             padding: 1rem 1.2rem;
             text-align: left;
-            color: #b8d6ff;
+            color: #7aa9ff;
             font-weight: 600;
             letter-spacing: 0.05em;
-            border-bottom: 2px solid rgba(74, 127, 255, 0.2);
+            border-bottom: 2px solid var(--table-border);
+            transition: background 0.3s ease;
         }
 
         .pricing-table tbody td {
             padding: 0.9rem 1.2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .pricing-table tbody tr:hover {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(122, 169, 255, 0.05);
         }
 
         .pricing-table tbody tr:last-child td {
@@ -227,11 +317,19 @@
         }
 
         .pricing-table .highlight-row {
-            background: rgba(74, 127, 255, 0.08);
+            background: var(--highlight-row);
         }
 
         .pricing-table .highlight-row td {
-            color: #fff;
+            color: var(--text-primary);
+        }
+
+        .pricing-table .basic-row {
+            background: var(--basic-row);
+        }
+
+        .pricing-table .basic-row td {
+            color: var(--text-primary);
         }
 
         .pricing-table .savings {
@@ -250,6 +348,20 @@
             border-radius: 1rem;
             letter-spacing: 0.05em;
             margin-left: 0.5rem;
+        }
+
+        .pricing-table .basic-tag {
+            display: inline-block;
+            background: rgba(122, 169, 255, 0.2);
+            color: #7aa9ff;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            letter-spacing: 0.05em;
+            margin-left: 0.5rem;
+            border: 1px solid rgba(122, 169, 255, 0.15);
         }
 
         /* --- Mobilní verze --- */
@@ -275,7 +387,7 @@
             }
 
             .content {
-                background: rgba(11, 13, 21, 0.7);
+                background: var(--bg-secondary-hover);
                 backdrop-filter: blur(10px);
                 border-radius: 1.8rem;
                 padding: 2rem 1rem;
@@ -297,6 +409,10 @@
 
             .table-section h2 {
                 font-size: 1.4rem;
+            }
+
+            .theme-toggle .theme-label {
+                display: none;
             }
         }
 
@@ -324,12 +440,17 @@
                 font-size: 0.5rem;
                 padding: 0.1rem 0.4rem;
             }
+
+            .pricing-table .basic-tag {
+                font-size: 0.5rem;
+                padding: 0.1rem 0.4rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HLAVIČKA S LOGEM A KONTAKTY -->
+    <!-- HLAVIČKA S LOGEM, KONTAKTY A PŘEPÍNAČEM MOTIVU -->
     <header>
         <div class="logo">
             <a href="index.html">Liberty Port Address</a>
@@ -350,6 +471,15 @@
             <a href="https://wa.me/420607032537" target="_blank" class="whatsapp">
                 <span class="icon">💬</span> WhatsApp
             </a>
+            <span class="separator">|</span>
+            <a href="https://signal.me/#p/+420607032537" target="_blank" class="signal">
+                <span class="icon">🔵</span> Signal
+            </a>
+            <span class="separator">|</span>
+            <button class="theme-toggle" id="themeToggle" aria-label="Přepnout motiv">
+                <span id="themeIcon">🌙</span>
+                <span class="theme-label" id="themeLabel">Tmavý</span>
+            </button>
         </div>
     </header>
 
@@ -383,8 +513,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Měsíčně</td>
+                        <!-- Měsíční platba - ZÁKLADNÍ -->
+                        <tr class="basic-row">
+                            <td>
+                                Měsíčně
+                                <span class="basic-tag">Základní</span>
+                            </td>
                             <td>200 Kč</td>
                             <td>200 Kč/měsíc</td>
                             <td>—</td>
@@ -401,6 +535,7 @@
                             <td>4 320 Kč</td>
                             <td class="savings">480 Kč</td>
                         </tr>
+                        <!-- Nejvýhodnější nabídka -->
                         <tr class="highlight-row">
                             <td>
                                 Platba za 3 roky
@@ -423,6 +558,7 @@
     </section>
 
     <script>
+        // --- PARALLAX TEČKY ---
         (function() {
             const grid = document.getElementById('dotGrid');
 
@@ -468,6 +604,43 @@
             mouseY = window.innerHeight / 2;
 
             updateGrid();
+        })();
+
+        // --- PŘEPÍNÁNÍ MOTIVU (DARK / LIGHT) ---
+        (function() {
+            const toggle = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
+
+            // Načtení uloženého motivu z localStorage
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+
+            // Nastavení motivu
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                currentTheme = theme;
+                localStorage.setItem('theme', theme);
+
+                if (theme === 'dark') {
+                    icon.textContent = '🌙';
+                    label.textContent = 'Tmavý';
+                } else {
+                    icon.textContent = '☀️';
+                    label.textContent = 'Světlý';
+                }
+            }
+
+            // Přepnutí motivu
+            function toggleTheme() {
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            }
+
+            // Posluchač na tlačítko
+            toggle.addEventListener('click', toggleTheme);
+
+            // Aplikovat uložený motiv
+            setTheme(currentTheme);
         })();
     </script>
 
