@@ -48,7 +48,7 @@
             --bg-primary: #ffffff;
             --bg-secondary: rgba(255, 255, 255, 0.85);
             --bg-secondary-hover: rgba(255, 255, 255, 0.95);
-            --bg-header: rgba(255, 255, 255, 0.95);
+            --bg-header: #000000;
             --text-primary: #1a1a1a;
             --text-secondary: rgba(26, 26, 26, 0.75);
             --text-muted: rgba(26, 26, 26, 0.6);
@@ -70,6 +70,10 @@
             --gradient-start: #ffd700;
             --gradient-middle: #ffb300;
             --gradient-end: #ff8f00;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -98,6 +102,34 @@
             flex-wrap: wrap;
             gap: 0.5rem 1.5rem;
             transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        [data-theme="light"] .logo a {
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+            background: none;
+        }
+
+        [data-theme="light"] .contact-info a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        [data-theme="light"] .contact-info a:hover {
+            color: #ffd700;
+        }
+
+        [data-theme="light"] .contact-info .separator {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        [data-theme="light"] .theme-toggle {
+            color: rgba(255, 255, 255, 0.7);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            border-color: #ffd700;
+            color: #ffd700;
         }
 
         /* --- Logo / Název v hlavičce --- */
@@ -341,7 +373,7 @@
 
         .pricing-table .savings {
             color: #2ed573;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .pricing-table .best-deal {
@@ -355,6 +387,11 @@
             border-radius: 1rem;
             letter-spacing: 0.05em;
             margin-left: 0.5rem;
+        }
+
+        .pricing-table .bold-savings {
+            font-weight: 700;
+            color: #2ed573;
         }
 
         /* --- DOPLŇKOVÉ SLUŽBY --- */
@@ -393,33 +430,78 @@
             border-bottom: none;
         }
 
+        .services-table .price-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .services-table .price-link:hover {
+            color: var(--accent-color-hover);
+            text-decoration: underline;
+        }
+
+        /* --- JAZYKOVÉ PŘEPÍNÁNÍ --- */
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-switch button {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 0.3rem;
+            padding: 0.2rem 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .lang-switch button:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .lang-switch button.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
         /* --- Mobilní verze --- */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 align-items: center;
                 padding: 0.6rem 1rem;
+                gap: 0.3rem;
             }
 
             .contact-info {
-                font-size: 0.75rem;
-                gap: 0.4rem 1rem;
+                font-size: 0.7rem;
+                gap: 0.3rem 0.8rem;
                 justify-content: center;
             }
 
             .logo a {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .parallax-container {
-                padding-top: 120px;
+                padding-top: 110px;
             }
 
             .content {
                 background: var(--bg-secondary-hover);
                 backdrop-filter: blur(10px);
                 border-radius: 1.8rem;
-                padding: 2rem 1rem;
+                padding: 1.5rem 0.8rem;
             }
 
             .dot-grid {
@@ -427,38 +509,64 @@
             }
 
             .pricing-table {
-                font-size: 0.8rem;
-                min-width: 350px;
+                font-size: 0.75rem;
+                min-width: 320px;
             }
 
             .pricing-table thead th,
             .pricing-table tbody td {
-                padding: 0.7rem 0.8rem;
+                padding: 0.6rem 0.7rem;
             }
 
             .services-table {
-                font-size: 0.8rem;
-                min-width: 300px;
+                font-size: 0.75rem;
+                min-width: 280px;
             }
 
             .services-table thead th,
             .services-table tbody td {
-                padding: 0.7rem 0.8rem;
+                padding: 0.6rem 0.7rem;
             }
 
             .table-section h2 {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             .theme-toggle .theme-label {
                 display: none;
             }
+
+            .contact-info .icon-svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .lang-switch button {
+                font-size: 0.6rem;
+                padding: 0.1rem 0.4rem;
+            }
+
+            /* Oprava barev v mobilní verzi - převzato z desktopu */
+            .content h1 {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+            }
+
+            .content p {
+                font-size: 0.95rem;
+            }
+
+            .pricing-table .best-deal {
+                font-size: 0.5rem;
+                padding: 0.1rem 0.4rem;
+                margin-left: 0.3rem;
+            }
         }
 
         @media (max-width: 480px) {
             .contact-info {
-                font-size: 0.65rem;
-                gap: 0.3rem 0.8rem;
+                font-size: 0.6rem;
+                gap: 0.2rem 0.5rem;
+                flex-wrap: wrap;
             }
 
             .contact-info .separator {
@@ -466,35 +574,44 @@
             }
 
             .pricing-table {
-                font-size: 0.7rem;
-                min-width: 300px;
+                font-size: 0.65rem;
+                min-width: 280px;
             }
 
             .pricing-table thead th,
             .pricing-table tbody td {
-                padding: 0.5rem 0.6rem;
+                padding: 0.4rem 0.5rem;
             }
 
             .services-table {
-                font-size: 0.7rem;
-                min-width: 250px;
+                font-size: 0.65rem;
+                min-width: 240px;
             }
 
             .services-table thead th,
             .services-table tbody td {
-                padding: 0.5rem 0.6rem;
+                padding: 0.4rem 0.5rem;
             }
 
             .pricing-table .best-deal {
-                font-size: 0.5rem;
-                padding: 0.1rem 0.4rem;
+                font-size: 0.45rem;
+                padding: 0.05rem 0.3rem;
+            }
+
+            .content {
+                padding: 1rem 0.6rem;
+                border-radius: 1.2rem;
+            }
+
+            .logo a {
+                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- HLAVIČKA S LOGEM A KONTAKTY -->
+    <!-- HLAVIČKA S LOGEM, KONTAKTY A PŘEPÍNAČEM MOTIVU -->
     <header>
         <div class="logo">
             <a href="index.html">Liberty Port Address</a>
@@ -532,6 +649,13 @@
                 Signal
             </a>
             <span class="separator">|</span>
+            <div class="lang-switch">
+                <button class="active" data-lang="cs" onclick="switchLang('cs')">CS</button>
+                <button data-lang="en" onclick="switchLang('en')">EN</button>
+                <button data-lang="ru" onclick="switchLang('ru')">RU</button>
+                <button data-lang="uk" onclick="switchLang('uk')">UK</button>
+            </div>
+            <span class="separator">|</span>
             <button class="theme-toggle" id="themeToggle" aria-label="Přepnout motiv">
                 <span id="themeIcon">🌙</span>
                 <span class="theme-label" id="themeLabel">Tmavý</span>
@@ -546,9 +670,9 @@
         <div class="dot-grid" id="dotGrid"></div>
 
         <!-- Obsah -->
-        <div class="content">
-            <h1>Liberty port address</h1>
-            <p>
+        <div class="content" id="content">
+            <h1 id="mainTitle">Liberty Port Address</h1>
+            <p id="mainSubtitle">
                 Virtuální sídlo Praha 5, Jindřicha Plachty 1139/25.
             </p>
 
@@ -556,44 +680,44 @@
             <!-- CENÍK VIRTUÁLNÍHO SÍDLA                    -->
             <!-- ========================================== -->
             <div class="table-section">
-                <h2>📊 Ceník virtuálního sídla</h2>
+                <h2 id="priceTitle">📊 Ceník virtuálního sídla</h2>
 
                 <table class="pricing-table">
                     <thead>
                         <tr>
-                            <th>Platba</th>
-                            <th>Měsíčně</th>
-                            <th>Celková částka</th>
-                            <th>Úspora oproti 200 Kč/měsíc</th>
+                            <th id="thPayment">Platba</th>
+                            <th id="thMonthly">Měsíčně</th>
+                            <th id="thTotal">Celková částka</th>
+                            <th id="thSavings">Úspora oproti 200 Kč/měsíc</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Platba za 1 rok</td>
+                            <td id="row1">Platba za 1 rok</td>
                             <td>200 Kč</td>
                             <td>2 400 Kč</td>
                             <td>0 Kč</td>
                         </tr>
                         <tr>
-                            <td>Platba za 2 roky</td>
+                            <td id="row2">Platba za 2 roky</td>
                             <td>180 Kč</td>
                             <td>4 320 Kč</td>
                             <td class="savings">480 Kč</td>
                         </tr>
                         <tr class="highlight-row">
-                            <td>
+                            <td id="row3">
                                 Platba za 3 roky
-                                <span class="best-deal">★ Nejvýhodnější</span>
+                                <span class="best-deal" id="bestDeal">★ Nejvýhodnější</span>
                             </td>
                             <td>160 Kč</td>
                             <td>5 760 Kč</td>
                             <td class="savings">1 440 Kč</td>
                         </tr>
                         <tr>
-                            <td>Platba za 4 roky</td>
+                            <td id="row4">Platba za 4 roky</td>
                             <td>145 Kč</td>
                             <td>6 960 Kč</td>
-                            <td class="savings">2 640 Kč</td>
+                            <td class="savings bold-savings">2 640 Kč</td>
                         </tr>
                     </tbody>
                 </table>
@@ -603,23 +727,31 @@
             <!-- DOPLŇKOVÉ SLUŽBY                           -->
             <!-- ========================================== -->
             <div class="table-section">
-                <h2>📦 Doplňkové služby</h2>
+                <h2 id="servicesTitle">📦 Doplňkové služby</h2>
 
                 <table class="services-table">
                     <thead>
                         <tr>
-                            <th>Služba</th>
-                            <th>Cena</th>
+                            <th id="thService">Služba</th>
+                            <th id="thPrice">Cena</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Skenování poštovních zásilek</td>
+                            <td id="service1">Skenování poštovních zásilek</td>
                             <td>99,- Kč / měsíčně</td>
                         </tr>
                         <tr>
-                            <td>Přeposílání poštovních zásilek</td>
+                            <td id="service2">Přeposílání poštovních zásilek</td>
                             <td>299,- Kč / měsíčně</td>
+                        </tr>
+                        <tr>
+                            <td id="service3">Účetnictví pro podnikatele a firmy</td>
+                            <td><a href="https://www.mindvala.cz/" target="_blank" class="price-link">na dotaz</a></td>
+                        </tr>
+                        <tr>
+                            <td id="service4">Administrativní práce spojené se založením firmy</td>
+                            <td><a href="https://www.mindvala.cz/" target="_blank" class="price-link">na dotaz</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -706,6 +838,123 @@
             toggle.addEventListener('click', toggleTheme);
             setTheme(currentTheme);
         })();
+
+        // --- JAZYKOVÉ PŘEPÍNÁNÍ ---
+        const translations = {
+            cs: {
+                mainTitle: 'Liberty Port Address',
+                mainSubtitle: 'Virtuální sídlo Praha 5, Jindřicha Plachty 1139/25.',
+                priceTitle: '📊 Ceník virtuálního sídla',
+                thPayment: 'Platba',
+                thMonthly: 'Měsíčně',
+                thTotal: 'Celková částka',
+                thSavings: 'Úspora oproti 200 Kč/měsíc',
+                row1: 'Platba za 1 rok',
+                row2: 'Platba za 2 roky',
+                row3: 'Platba za 3 roky',
+                row4: 'Platba za 4 roky',
+                bestDeal: '★ Nejvýhodnější',
+                servicesTitle: '📦 Doplňkové služby',
+                thService: 'Služba',
+                thPrice: 'Cena',
+                service1: 'Skenování poštovních zásilek',
+                service2: 'Přeposílání poštovních zásilek',
+                service3: 'Účetnictví pro podnikatele a firmy',
+                service4: 'Administrativní práce spojené se založením firmy'
+            },
+            en: {
+                mainTitle: 'Liberty Port Address',
+                mainSubtitle: 'Virtual office Prague 5, Jindřicha Plachty 1139/25.',
+                priceTitle: '📊 Virtual office price list',
+                thPayment: 'Payment',
+                thMonthly: 'Monthly',
+                thTotal: 'Total amount',
+                thSavings: 'Savings vs. 200 CZK/month',
+                row1: '1 year payment',
+                row2: '2 years payment',
+                row3: '3 years payment',
+                row4: '4 years payment',
+                bestDeal: '★ Best value',
+                servicesTitle: '📦 Additional services',
+                thService: 'Service',
+                thPrice: 'Price',
+                service1: 'Mail scanning',
+                service2: 'Mail forwarding',
+                service3: 'Accounting for entrepreneurs and companies',
+                service4: 'Administrative work related to company formation'
+            },
+            ru: {
+                mainTitle: 'Liberty Port Address',
+                mainSubtitle: 'Виртуальный офис Прага 5, Йиндржиха Плахты 1139/25.',
+                priceTitle: '📊 Прайс-лист виртуального офиса',
+                thPayment: 'Оплата',
+                thMonthly: 'В месяц',
+                thTotal: 'Общая сумма',
+                thSavings: 'Экономия против 200 Kč/мес',
+                row1: 'Оплата за 1 год',
+                row2: 'Оплата за 2 года',
+                row3: 'Оплата за 3 года',
+                row4: 'Оплата за 4 года',
+                bestDeal: '★ Самый выгодный',
+                servicesTitle: '📦 Дополнительные услуги',
+                thService: 'Услуга',
+                thPrice: 'Цена',
+                service1: 'Сканирование почтовых отправлений',
+                service2: 'Пересылка почтовых отправлений',
+                service3: 'Бухгалтерия для предпринимателей и компаний',
+                service4: 'Административные работы по регистрации компании'
+            },
+            uk: {
+                mainTitle: 'Liberty Port Address',
+                mainSubtitle: 'Віртуальний офіс Прага 5, Їндржиха Плахти 1139/25.',
+                priceTitle: '📊 Прайс-лист віртуального офісу',
+                thPayment: 'Оплата',
+                thMonthly: 'За місяць',
+                thTotal: 'Загальна сума',
+                thSavings: 'Економія проти 200 Kč/міс',
+                row1: 'Оплата за 1 рік',
+                row2: 'Оплата за 2 роки',
+                row3: 'Оплата за 3 роки',
+                row4: 'Оплата за 4 роки',
+                bestDeal: '★ Найвигідніший',
+                servicesTitle: '📦 Додаткові послуги',
+                thService: 'Послуга',
+                thPrice: 'Ціна',
+                service1: 'Сканування поштових відправлень',
+                service2: 'Пересилання поштових відправлень',
+                service3: 'Бухгалтерія для підприємців та компаній',
+                service4: 'Адміністративні роботи з реєстрації компанії'
+            }
+        };
+
+        function switchLang(lang) {
+            // Aktualizace aktivního tlačítka
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            const t = translations[lang];
+            if (!t) return;
+
+            document.getElementById('mainTitle').textContent = t.mainTitle;
+            document.getElementById('mainSubtitle').textContent = t.mainSubtitle;
+            document.getElementById('priceTitle').textContent = t.priceTitle;
+            document.getElementById('thPayment').textContent = t.thPayment;
+            document.getElementById('thMonthly').textContent = t.thMonthly;
+            document.getElementById('thTotal').textContent = t.thTotal;
+            document.getElementById('thSavings').textContent = t.thSavings;
+            document.getElementById('row1').textContent = t.row1;
+            document.getElementById('row2').textContent = t.row2;
+            document.getElementById('row3').innerHTML = t.row3 + ' <span class="best-deal" id="bestDeal">' + t.bestDeal + '</span>';
+            document.getElementById('row4').textContent = t.row4;
+            document.getElementById('servicesTitle').textContent = t.servicesTitle;
+            document.getElementById('thService').textContent = t.thService;
+            document.getElementById('thPrice').textContent = t.thPrice;
+            document.getElementById('service1').textContent = t.service1;
+            document.getElementById('service2').textContent = t.service2;
+            document.getElementById('service3').textContent = t.service3;
+            document.getElementById('service4').textContent = t.service4;
+        }
     </script>
 
 </body>
