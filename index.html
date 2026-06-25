@@ -41,6 +41,7 @@
             --gradient-start: #ffd700;
             --gradient-middle: #ffb300;
             --gradient-end: #ff8f00;
+            --savings-color: #2ed573;
         }
 
         /* --- LIGHT THEME - bílé pozadí, tmavý text, tmavé tečky, žluté akcenty --- */
@@ -48,7 +49,7 @@
             --bg-primary: #ffffff;
             --bg-secondary: rgba(255, 255, 255, 0.85);
             --bg-secondary-hover: rgba(255, 255, 255, 0.95);
-            --bg-header: rgba(0, 0, 0, 0.85);
+            --bg-header: rgba(255, 255, 255, 0.92);
             --text-primary: #1a1a1a;
             --text-secondary: rgba(26, 26, 26, 0.75);
             --text-muted: rgba(26, 26, 26, 0.6);
@@ -70,6 +71,7 @@
             --gradient-start: #ffd700;
             --gradient-middle: #ffb300;
             --gradient-end: #ff8f00;
+            --savings-color: #1a1a1a;
         }
 
         html {
@@ -106,13 +108,13 @@
         }
 
         [data-theme="light"] .logo a {
-            color: #ffffff;
-            -webkit-text-fill-color: #ffffff;
+            color: #1a1a1a;
+            -webkit-text-fill-color: #1a1a1a;
             background: none;
         }
 
         [data-theme="light"] .contact-info a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(26, 26, 26, 0.7);
         }
 
         [data-theme="light"] .contact-info a:hover {
@@ -120,12 +122,12 @@
         }
 
         [data-theme="light"] .contact-info .separator {
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(0, 0, 0, 0.15);
         }
 
         [data-theme="light"] .theme-toggle {
-            color: rgba(255, 255, 255, 0.7);
-            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(26, 26, 26, 0.7);
+            border-color: rgba(0, 0, 0, 0.15);
         }
 
         [data-theme="light"] .theme-toggle:hover {
@@ -134,8 +136,8 @@
         }
 
         [data-theme="light"] .lang-switch button {
-            color: rgba(255, 255, 255, 0.7);
-            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(26, 26, 26, 0.7);
+            border-color: rgba(0, 0, 0, 0.15);
         }
 
         [data-theme="light"] .lang-switch button:hover {
@@ -265,23 +267,20 @@
             padding-bottom: 2rem;
         }
 
-        /* --- Jediná vrstva tečkového rastru - nekonečný pattern --- */
+        /* --- Jediná vrstva tečkového rastru --- */
         .dot-grid {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            width: 200%;
-            height: 200%;
+            width: 100%;
+            height: 120%;
             background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
-            background-size: 60px 60px;
+            background-size: 40px 40px;
             background-position: 0 0;
             will-change: transform;
             z-index: 0;
             pointer-events: none;
             transition: background-image 0.5s ease;
-            transform: translate(0, 0);
         }
 
         /* --- Obsah (nad tečkami) --- */
@@ -405,7 +404,7 @@
         }
 
         .pricing-table .savings {
-            color: #2ed573;
+            color: var(--savings-color);
             font-weight: 700;
         }
 
@@ -424,7 +423,7 @@
 
         .pricing-table .bold-savings {
             font-weight: 700;
-            color: #2ed573;
+            color: var(--savings-color);
         }
 
         /* --- DOPLŇKOVÉ SLUŽBY --- */
@@ -548,7 +547,7 @@
             }
 
             .dot-grid {
-                background-size: 40px 40px;
+                background-size: 28px 28px;
             }
 
             .pricing-table {
@@ -726,7 +725,7 @@
     <!-- HLAVNÍ SEKCE S PARALLAXEM -->
     <section class="parallax-container">
 
-        <!-- Tečkový raster - nekonečný pattern -->
+        <!-- Tečkový raster -->
         <div class="dot-grid" id="dotGrid"></div>
 
         <!-- Obsah -->
@@ -767,20 +766,20 @@
                             <td id="r2total">4 320 Kč</td>
                             <td id="r2savings" class="savings">480 Kč</td>
                         </tr>
-                        <tr class="highlight-row">
-                            <td id="row3">
-                                Platba za 3 roky
-                                <span class="best-deal" id="bestDeal">★ Nejvýhodnější</span>
-                            </td>
+                        <tr>
+                            <td id="row3">Platba za 3 roky</td>
                             <td id="r3monthly">160 Kč</td>
                             <td id="r3total">5 760 Kč</td>
                             <td id="r3savings" class="savings">1 440 Kč</td>
                         </tr>
-                        <tr>
-                            <td id="row4">Platba za 4 roky</td>
+                        <tr class="highlight-row">
+                            <td id="row4">
+                                Platba za 4 roky
+                                <span class="best-deal" id="bestDeal">★ Nejvýhodnější</span>
+                            </td>
                             <td id="r4monthly">145 Kč</td>
                             <td id="r4total">6 960 Kč</td>
-                            <td id="r4savings" class="savings bold-savings">2 640 Kč</td>
+                            <td id="r4savings" class="savings">2 640 Kč</td>
                         </tr>
                     </tbody>
                 </table>
@@ -826,35 +825,29 @@
     </section>
 
     <script>
-        // --- PARALLAX TEČKY - nekonečný pattern ---
+        // --- PARALLAX TEČKY ---
         (function() {
             const grid = document.getElementById('dotGrid');
-            const container = grid.parentElement;
 
             let mouseX = 0;
             let mouseY = 0;
             let currentX = 0;
             let currentY = 0;
-            const SPEED = 0.03;
 
-            // Inicializace
+            const SPEED = 0.035;
+
             mouseX = window.innerWidth / 2;
             mouseY = window.innerHeight / 2;
 
             function updateGrid() {
-                // Plynulé vyhlazení
                 currentX += (mouseX - currentX) * 0.08;
                 currentY += (mouseY - currentY) * 0.08;
 
-                // Výpočet posunu (vždy mezi -1 a 1)
-                const offsetX = Math.max(-1, Math.min(1, (currentX / window.innerWidth - 0.5) * 2.2));
-                const offsetY = Math.max(-1, Math.min(1, (currentY / window.innerHeight - 0.5) * 2.2));
+                const offsetX = (currentX / window.innerWidth - 0.5) * 2;
+                const offsetY = (currentY / window.innerHeight - 0.5) * 2;
 
-                // Aplikace transformace - pohyb v rozsahu cca ±30%
-                const moveX = offsetX * 30;
-                const moveY = offsetY * 30;
-
-                grid.style.transform = `translate(${moveX}%, ${moveY}%)`;
+                grid.style.transform =
+                    `translate(${offsetX * 20 * SPEED * 100}px, ${offsetY * 20 * SPEED * 100}px)`;
 
                 requestAnimationFrame(updateGrid);
             }
@@ -871,18 +864,12 @@
                 }
             }
 
-            function onResize() {
-                // Obnovení pozice myši na střed
-                mouseX = window.innerWidth / 2;
-                mouseY = window.innerHeight / 2;
-            }
-
             window.addEventListener('mousemove', onMouseMove);
-            window.addEventListener('touchmove', onTouchMove, { passive: true });
-            window.addEventListener('resize', onResize);
+            window.addEventListener('touchmove', onTouchMove);
 
-            // Nastavení počáteční pozice
-            onResize();
+            mouseX = window.innerWidth / 2;
+            mouseY = window.innerHeight / 2;
+
             updateGrid();
         })();
 
@@ -1101,13 +1088,13 @@
             document.getElementById('r2total').textContent = t.r2total;
             document.getElementById('r2savings').textContent = t.r2savings;
 
-            // Řádek 3 (s best deal)
-            document.getElementById('row3').innerHTML = t.row3 + ' <span class="best-deal" id="bestDeal">' + t.bestDeal + '</span>';
+            document.getElementById('row3').textContent = t.row3;
             document.getElementById('r3monthly').textContent = t.r3monthly;
             document.getElementById('r3total').textContent = t.r3total;
             document.getElementById('r3savings').textContent = t.r3savings;
 
-            document.getElementById('row4').textContent = t.row4;
+            // Řádek 4 (s best deal)
+            document.getElementById('row4').innerHTML = t.row4 + ' <span class="best-deal" id="bestDeal">' + t.bestDeal + '</span>';
             document.getElementById('r4monthly').textContent = t.r4monthly;
             document.getElementById('r4total').textContent = t.r4total;
             document.getElementById('r4savings').textContent = t.r4savings;
