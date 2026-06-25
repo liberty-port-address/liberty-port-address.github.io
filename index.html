@@ -15,7 +15,7 @@
 
         /* --- PROMĚNNÉ PRO MOTIVY --- */
         :root {
-            /* Dark theme (výchozí) */
+            /* Dark theme (výchozí) - žluté akcenty */
             --bg-primary: #0b0d15;
             --bg-secondary: rgba(11, 13, 21, 0.55);
             --bg-secondary-hover: rgba(11, 13, 21, 0.7);
@@ -26,38 +26,52 @@
             --border-color: rgba(255, 255, 255, 0.06);
             --border-light: rgba(255, 255, 255, 0.05);
             --shadow-color: rgba(0, 0, 0, 0.8);
-            --table-header-bg: rgba(74, 127, 255, 0.15);
-            --table-border: rgba(74, 127, 255, 0.2);
-            --dot-color: rgba(100, 180, 255, 0.5);
+            --table-header-bg: rgba(255, 215, 0, 0.15);
+            --table-border: rgba(255, 215, 0, 0.2);
+            --dot-color: rgba(255, 215, 0, 0.3);
             --input-bg: rgba(255, 255, 255, 0.05);
             --input-border: rgba(255, 255, 255, 0.1);
-            --input-focus: rgba(122, 169, 255, 0.2);
-            --highlight-row: rgba(74, 127, 255, 0.08);
+            --input-focus: rgba(255, 215, 0, 0.2);
+            --highlight-row: rgba(255, 215, 0, 0.08);
             --basic-row: rgba(255, 255, 255, 0.03);
             --footer-bg: rgba(0, 0, 0, 0.2);
+            --accent-color: #ffd700;
+            --accent-color-hover: #ffed4a;
+            --link-color: #ffd700;
+            --link-hover: #ffed4a;
+            --gradient-start: #ffd700;
+            --gradient-middle: #ffb300;
+            --gradient-end: #ff8f00;
         }
 
-        /* --- LIGHT THEME --- */
+        /* --- LIGHT THEME - tmavě šedá se žlutými akcenty --- */
         [data-theme="light"] {
-            --bg-primary: #f0f4ff;
-            --bg-secondary: rgba(255, 255, 255, 0.75);
-            --bg-secondary-hover: rgba(255, 255, 255, 0.9);
-            --bg-header: rgba(255, 255, 255, 0.92);
-            --text-primary: #0b0d15;
-            --text-secondary: rgba(0, 0, 0, 0.7);
-            --text-muted: rgba(0, 0, 0, 0.6);
-            --border-color: rgba(0, 0, 0, 0.08);
-            --border-light: rgba(0, 0, 0, 0.05);
-            --shadow-color: rgba(0, 0, 0, 0.15);
-            --table-header-bg: rgba(74, 127, 255, 0.1);
-            --table-border: rgba(74, 127, 255, 0.2);
-            --dot-color: rgba(74, 127, 255, 0.2);
-            --input-bg: rgba(0, 0, 0, 0.03);
-            --input-border: rgba(0, 0, 0, 0.1);
-            --input-focus: rgba(74, 127, 255, 0.15);
-            --highlight-row: rgba(74, 127, 255, 0.05);
-            --basic-row: rgba(0, 0, 0, 0.02);
-            --footer-bg: rgba(0, 0, 0, 0.05);
+            --bg-primary: #1a1a1a;
+            --bg-secondary: rgba(30, 30, 30, 0.75);
+            --bg-secondary-hover: rgba(30, 30, 30, 0.9);
+            --bg-header: rgba(26, 26, 26, 0.92);
+            --text-primary: #e8e8e8;
+            --text-secondary: rgba(200, 200, 200, 0.8);
+            --text-muted: rgba(200, 200, 200, 0.6);
+            --border-color: rgba(255, 215, 0, 0.12);
+            --border-light: rgba(255, 255, 255, 0.04);
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --table-header-bg: rgba(255, 215, 0, 0.12);
+            --table-border: rgba(255, 215, 0, 0.15);
+            --dot-color: rgba(255, 215, 0, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.03);
+            --input-border: rgba(255, 215, 0, 0.1);
+            --input-focus: rgba(255, 215, 0, 0.15);
+            --highlight-row: rgba(255, 215, 0, 0.06);
+            --basic-row: rgba(255, 255, 255, 0.02);
+            --footer-bg: rgba(0, 0, 0, 0.3);
+            --accent-color: #ffd700;
+            --accent-color-hover: #ffed4a;
+            --link-color: #ffd700;
+            --link-hover: #ffed4a;
+            --gradient-start: #ffd700;
+            --gradient-middle: #ffb300;
+            --gradient-end: #ff8f00;
         }
 
         body {
@@ -95,7 +109,7 @@
             color: var(--text-primary);
             text-decoration: none;
             letter-spacing: 0.05em;
-            background: linear-gradient(135deg, #b8d6ff, #7aa9ff, #4a7fff);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -123,7 +137,7 @@
         }
 
         .contact-info a:hover {
-            color: #7aa9ff;
+            color: var(--link-hover);
         }
 
         .contact-info .icon {
@@ -165,8 +179,8 @@
         }
 
         .theme-toggle:hover {
-            border-color: #7aa9ff;
-            color: #7aa9ff;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
             transform: scale(1.05);
         }
 
@@ -229,27 +243,13 @@
             font-weight: 700;
             letter-spacing: 0.02em;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #b8d6ff, #7aa9ff, #4a7fff);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px rgba(74, 127, 255, 0.2);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
             margin-bottom: 0.5rem;
             line-height: 1.1;
-        }
-
-        .content .sub {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
-            color: var(--text-muted);
-            letter-spacing: 0.3em;
-            font-weight: 300;
-            text-transform: uppercase;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1.2rem;
-            margin-top: 0.5rem;
-            display: inline-block;
-            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
         .content p {
@@ -294,7 +294,7 @@
             background: var(--table-header-bg);
             padding: 1rem 1.2rem;
             text-align: left;
-            color: #7aa9ff;
+            color: var(--accent-color);
             font-weight: 600;
             letter-spacing: 0.05em;
             border-bottom: 2px solid var(--table-border);
@@ -309,7 +309,7 @@
         }
 
         .pricing-table tbody tr:hover {
-            background: rgba(122, 169, 255, 0.05);
+            background: rgba(255, 215, 0, 0.04);
         }
 
         .pricing-table tbody tr:last-child td {
@@ -324,14 +324,6 @@
             color: var(--text-primary);
         }
 
-        .pricing-table .basic-row {
-            background: var(--basic-row);
-        }
-
-        .pricing-table .basic-row td {
-            color: var(--text-primary);
-        }
-
         .pricing-table .savings {
             color: #2ed573;
             font-weight: 600;
@@ -339,7 +331,7 @@
 
         .pricing-table .best-deal {
             display: inline-block;
-            background: linear-gradient(135deg, #2ed573, #1abc9c);
+            background: linear-gradient(135deg, #ffd700, #ffb300);
             color: #0b0d15;
             font-size: 0.6rem;
             font-weight: 700;
@@ -348,20 +340,6 @@
             border-radius: 1rem;
             letter-spacing: 0.05em;
             margin-left: 0.5rem;
-        }
-
-        .pricing-table .basic-tag {
-            display: inline-block;
-            background: rgba(122, 169, 255, 0.2);
-            color: #7aa9ff;
-            font-size: 0.6rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            padding: 0.2rem 0.6rem;
-            border-radius: 1rem;
-            letter-spacing: 0.05em;
-            margin-left: 0.5rem;
-            border: 1px solid rgba(122, 169, 255, 0.15);
         }
 
         /* --- Mobilní verze --- */
@@ -440,11 +418,6 @@
                 font-size: 0.5rem;
                 padding: 0.1rem 0.4rem;
             }
-
-            .pricing-table .basic-tag {
-                font-size: 0.5rem;
-                padding: 0.1rem 0.4rem;
-            }
         }
     </style>
 </head>
@@ -492,7 +465,6 @@
         <!-- Obsah -->
         <div class="content">
             <h1>Liberty Port<br>Address</h1>
-            <span class="sub">✦ digitální přístav ✦</span>
             <p>
                 Virtuální sídlo Praha 5, Jindřicha Plachty 1139/25.
             </p>
@@ -513,16 +485,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Měsíční platba - ZÁKLADNÍ -->
-                        <tr class="basic-row">
-                            <td>
-                                Měsíčně
-                                <span class="basic-tag">Základní</span>
-                            </td>
-                            <td>200 Kč</td>
-                            <td>200 Kč/měsíc</td>
-                            <td>—</td>
-                        </tr>
                         <tr>
                             <td>Platba za 1 rok</td>
                             <td>200 Kč</td>
