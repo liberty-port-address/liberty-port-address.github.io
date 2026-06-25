@@ -26,14 +26,13 @@
             --border-color: rgba(255, 255, 255, 0.06);
             --border-light: rgba(255, 255, 255, 0.05);
             --shadow-color: rgba(0, 0, 0, 0.8);
-            --table-header-bg: rgba(255, 215, 0, 0.15);
-            --table-border: rgba(255, 215, 0, 0.2);
+            --table-header-bg: rgba(255, 215, 0, 0.12);
+            --table-border: rgba(255, 215, 0, 0.15);
             --dot-color: rgba(255, 215, 0, 0.3);
             --input-bg: rgba(255, 255, 255, 0.05);
             --input-border: rgba(255, 255, 255, 0.1);
             --input-focus: rgba(255, 215, 0, 0.2);
             --highlight-row: rgba(255, 215, 0, 0.08);
-            --basic-row: rgba(255, 255, 255, 0.03);
             --footer-bg: rgba(0, 0, 0, 0.2);
             --accent-color: #ffd700;
             --accent-color-hover: #ffed4a;
@@ -44,31 +43,30 @@
             --gradient-end: #ff8f00;
         }
 
-        /* --- LIGHT THEME - tmavě šedá se žlutými akcenty --- */
+        /* --- LIGHT THEME - bílé pozadí, tmavý text, tmavé tečky, žluté akcenty --- */
         [data-theme="light"] {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: rgba(30, 30, 30, 0.75);
-            --bg-secondary-hover: rgba(30, 30, 30, 0.9);
-            --bg-header: rgba(26, 26, 26, 0.92);
-            --text-primary: #e8e8e8;
-            --text-secondary: rgba(200, 200, 200, 0.8);
-            --text-muted: rgba(200, 200, 200, 0.6);
-            --border-color: rgba(255, 215, 0, 0.12);
-            --border-light: rgba(255, 255, 255, 0.04);
-            --shadow-color: rgba(0, 0, 0, 0.6);
+            --bg-primary: #ffffff;
+            --bg-secondary: rgba(255, 255, 255, 0.85);
+            --bg-secondary-hover: rgba(255, 255, 255, 0.95);
+            --bg-header: rgba(255, 255, 255, 0.95);
+            --text-primary: #1a1a1a;
+            --text-secondary: rgba(26, 26, 26, 0.75);
+            --text-muted: rgba(26, 26, 26, 0.6);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-light: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.12);
             --table-header-bg: rgba(255, 215, 0, 0.12);
             --table-border: rgba(255, 215, 0, 0.15);
-            --dot-color: rgba(255, 215, 0, 0.15);
-            --input-bg: rgba(255, 255, 255, 0.03);
-            --input-border: rgba(255, 215, 0, 0.1);
+            --dot-color: rgba(26, 26, 26, 0.25);
+            --input-bg: rgba(0, 0, 0, 0.03);
+            --input-border: rgba(0, 0, 0, 0.08);
             --input-focus: rgba(255, 215, 0, 0.15);
             --highlight-row: rgba(255, 215, 0, 0.06);
-            --basic-row: rgba(255, 255, 255, 0.02);
-            --footer-bg: rgba(0, 0, 0, 0.3);
+            --footer-bg: rgba(0, 0, 0, 0.03);
             --accent-color: #ffd700;
             --accent-color-hover: #ffed4a;
-            --link-color: #ffd700;
-            --link-hover: #ffed4a;
+            --link-color: #d4a800;
+            --link-hover: #ffb300;
             --gradient-start: #ffd700;
             --gradient-middle: #ffb300;
             --gradient-end: #ff8f00;
@@ -144,12 +142,10 @@
             font-size: 1.2rem;
         }
 
-        /* --- Oddělovač mezi kontakty --- */
         .contact-info .separator {
             color: var(--border-color);
         }
 
-        /* --- TELEGRAM, WHATSAPP A SIGNAL (zvýraznění) --- */
         .contact-info .telegram:hover {
             color: #26A5E4;
         }
@@ -331,8 +327,8 @@
 
         .pricing-table .best-deal {
             display: inline-block;
-            background: linear-gradient(135deg, #ffd700, #ffb300);
-            color: #0b0d15;
+            background: linear-gradient(135deg, #ffd700, #ffb300, #ff8f00);
+            color: #1a1a1a;
             font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -497,7 +493,7 @@
                             <td>4 320 Kč</td>
                             <td class="savings">480 Kč</td>
                         </tr>
-                        <!-- Nejvýhodnější nabídka -->
+                        <!-- Nejvýhodnější nabídka se žlutým gradientem -->
                         <tr class="highlight-row">
                             <td>
                                 Platba za 3 roky
@@ -574,10 +570,8 @@
             const icon = document.getElementById('themeIcon');
             const label = document.getElementById('themeLabel');
 
-            // Načtení uloženého motivu z localStorage
             let currentTheme = localStorage.getItem('theme') || 'dark';
 
-            // Nastavení motivu
             function setTheme(theme) {
                 document.documentElement.setAttribute('data-theme', theme);
                 currentTheme = theme;
@@ -592,16 +586,12 @@
                 }
             }
 
-            // Přepnutí motivu
             function toggleTheme() {
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 setTheme(newTheme);
             }
 
-            // Posluchač na tlačítko
             toggle.addEventListener('click', toggleTheme);
-
-            // Aplikovat uložený motiv
             setTheme(currentTheme);
         })();
     </script>
